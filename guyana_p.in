@@ -1,0 +1,84 @@
+# Control file to locate events using the 3DSA velocity models and the 
+# NLLoc program.
+#
+# To install the NLLoc and for more information, see the NLLoc on-line
+# documentation in: http://www.alomax.net/nlloc 
+#
+# lines are comments
+
+# Needed line
+
+CONTROL 1 54321
+
+# This defines the coordinate transformation point 
+# (Bottom left point of the model)
+
+TRANS SIMPLE -32 -75 0 
+
+# =============================================================================
+# Vel2Grid3D control file statements
+# =============================================================================
+
+###
+#
+# This controls the 3DSA model input and slowness grids. These parameters 
+# are used by Vel2Grid3D. Parameters after the FDTOMO should not be 
+# changed and defines the necessary headers to interpret the generated 
+# 3DSA_P.buf file.
+#
+###
+
+VGINP ./model/3DSA_P.buf FDTOMO 0 0 -7.0 83 85 908 55.5 55.5 1.0
+VGOUT ./model/guyana
+VGTYPE P
+
+##
+#
+# In this example, our grid will contain 1600, 2300, and 307 nodes in x, 
+# y, and, z. The grid will start at 1400, 2000, and -7 km in the 
+# reference system of the original model (this region should contain all 
+# your stations and the epicenter trying to be located). To calculate 
+# those parameters, we made a simple conversion from degrees to km, using 
+# 1 degree = 111.19 km. This conversion gives us an idea of the area of 
+# interest, being conservative with the adopted borders.
+# 
+# The spacing in the three directions will be 1 km in this example. The 
+# spacing must be the same in x, y, and z. Do not edit the type of the 
+# grid (SLOW_LEN). VGCLIP limits the minimum and maximum velocity, it is 
+# not necessary to use this option.
+# 
+##
+
+VGGRID 1600 2300 307 1400.0 2000.0 -7.0 1.0 1.0 1.0 SLOW_LEN
+VGCLIP 0.5 12.0
+
+# =============================================================================
+# END of Vel2Grid3D control file statements
+# =============================================================================
+
+# =============================================================================
+# Grid2Time control file statements
+# =============================================================================
+
+##
+#
+# This block controls the time grid generation from the slowness grids. 
+# Stations are defined in the included file 'guyana_stations.in'. Other 
+# parameters defined: the input slowness grid (./model/guyana), output 
+# time grid locations (./time/time) and, phase to consider (P)
+# 
+# We also do not need to have the ANGLE grid file. Uses a precision of 
+# 1E-3
+#
+##
+
+GTFILES  ./model/guyana ./time/time P
+GTMODE GRID3D ANGLES_NO
+
+INCLUDE guyana_stations.in
+
+GT_PLFD  1.0e-3  0
+
+# =============================================================================
+# END of Grid2Time control file statements
+# =============================================================================

@@ -1,0 +1,17 @@
+# Here we list the coordinates of the stations as described by the NLLoc
+# documentation. Each line represents a station. Station codes should match
+# the ones on the observation file (obs/*).
+#
+# For each file here, we will need to generate a special grid of computed
+# times that will be used in the earthquake location.
+
+GTSRCE ITTB  LATLON  -4.3672000   -55.734300   0.0   0.118
+GTSRCE CLDB  LATLON  -10.873200   -55.796500   0.0   0.298
+GTSRCE PRPB  LATLON  -6.1724000   -49.815000   0.0   0.265
+GTSRCE PDRB  LATLON  -11.612297   -56.729597   0.0   0.322
+GTSRCE MACA  LATLON  -3.1615000   -60.683800   0.0   0.075
+GTSRCE MAL2  LATLON  -2.0200000   -54.180000   0.0   0.222
+GTSRCE VILB  LATLON  -12.952800   -60.200200   0.0   0.434
+GTSRCE NPGB  LATLON  -7.0454000   -55.357900   0.0   0.266
+GTSRCE BOAV  LATLON  2.39530000   -60.522500   0.0   0.114
+GTSRCE MPG   LATLON  5.11011000   -52.644483   0.0   0.147

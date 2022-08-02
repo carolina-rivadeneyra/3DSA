@@ -1,0 +1,39 @@
+# This file is adapted from the guyana_p.in file. They are equivalent, the
+# only difference is that this file uses the 3DSA_S.buf file, generating
+# slowness and time grids for S-wave.
+#
+# For blocks comments, refers to the guyana_p.in file.
+#
+
+CONTROL 1 54321
+TRANS SIMPLE -32 -75 0
+
+# =============================================================================
+# Vel2Grid3D control file statements
+# =============================================================================
+
+VGINP ./model/3DSA_S.buf FDTOMO 0 0 -7.0 83 85 908 55.5 55.5 1.0
+VGOUT ./model/guyana
+VGTYPE S
+
+VGGRID 1600 2300 307 1400.0 2000.0 -7.0 1.0 1.0 1.0 SLOW_LEN
+VGCLIP 0.5 12.0
+
+# =============================================================================
+# END of Vel2Grid3D control file statements
+# =============================================================================
+
+# =============================================================================
+# Grid2Time control file statements
+# =============================================================================
+
+GTFILES  ./model/guyana ./time/time S
+GTMODE GRID3D ANGLES_NO
+
+INCLUDE guyana_stations.in
+
+GT_PLFD  1.0e-3  0
+
+# =============================================================================
+# END of Grid2Time control file statements
+# =============================================================================

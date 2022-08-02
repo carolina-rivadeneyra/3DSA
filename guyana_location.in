@@ -1,0 +1,37 @@
+# Needed line?
+
+CONTROL 1 54321
+
+# This defines the coordinate transformation point (Bottom left point 
+# of the model)
+
+TRANS SIMPLE -32 -75 0
+
+# =============================================================================
+# NLLoc control file statements
+# =============================================================================
+
+##
+#
+# Those are the control parameters to the location procedure. You should 
+# refer to the NLLoc documentation for a description of each parameter.
+#
+###
+
+LOCCOM 2021 Guyana (NonLinLoc Sample Location)
+LOCFILES ./obs/guyana.obs NORDIC ./time/time ./loc/guyana
+LOCHYPOUT SAVE_NLLOC_ALL  SAVE_HYPOINV_SUM
+LOCSEARCH  OCT 72 72 40 0.01 600000 5000 1 1
+LOCGRID  2000 2000 20 1400.0 3400.0 0.0  0.25 0.25 0.5   PROB_DENSITY  SAVE
+LOCMETH EDT_OT_WT 9999.0 4 -1 -1 1.68 6 -1.0 1
+LOCGAU 0.2 0.0
+LOCGAU2 0.01 0.05 2.0
+LOCPHASEID  P   P p G PN PG
+LOCPHASEID  S   S s G SN SG
+LOCQUAL2ERR 0.1 0.5 1.0 2.0 99999.9
+LOCANGLES ANGLES_YES 5
+LOCPHSTAT 9999.0 -1 9999.0 1.0 1.0 9999.9 -9999.9 9999.9
+
+# =============================================================================
+# END of NLLoc control file statements
+# =============================================================================

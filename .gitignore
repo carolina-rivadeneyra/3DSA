@@ -1,0 +1,6 @@
+time/*.buf
+time/*.hdr
+model/*.mod.buf
+model/*.mod.hdr
+loc/last.*
+loc/guyana.*
